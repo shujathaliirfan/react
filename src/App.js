@@ -5,17 +5,26 @@ import './App.css';
 
 class App extends Component {
 
-
+state ={
+  username:'shujath ali irfan'
+}
 
   state ={
     Persons:[
       {name:"shujath", age:"22"},
       {name:"alih", age:"28"},
       {name:"irfan", age:"29"}
+    ],
+
+    showPerson:false
+  }
 
 
+  myFunctionn =() => {
 
-    ]
+    const doesShow =this.state.showPerson;
+    this.setState({showPerson: !doesShow})
+
   }
 
 myFunction = (newName) =>{
@@ -41,34 +50,33 @@ changed =(event)=>{
 
   })
 
-}
-render(){
-  const mee={
-    fontSize:'16px',
-    padding:'9px',
-    backgroundColor:'yellow',
-    color:'black'
-
-
-
   }
+  render() {
+    const mee = {
+      fontSize: '16px',
+      padding: '9px',
+      backgroundColor: 'yellow',
+      color: 'black'
+    }
 
-  return (
+    let mai =null;
 
-  <div className="App">
-    <h1>iam  React a developer</h1>
-
-    <button style={mee} onClick={this.myFunction.bind(this,'khaaali')}>click me</button>
-
-    <Person changed={this.changed} click={this.myFunction.bind(this,"pathan")}  name={this.state.Persons[0].name} age={this.state.Persons[0].age}  currentName/>
+    if(this.state.showPerson){
+      mai =(
+      <div>
+        <Person changed={this.changed} click={this.myFunction.bind(this,"pathan")}  name={this.state.Persons[0].name} age={this.state.Persons[0].age} currentName={this.state.username} />
     <Person   name={this.state.Persons[1].name} age={this.state.Persons[1].age} />
     <Person name={this.state.Persons[2].name} age={this.state.Persons[2].age} />
 
+    </div>)
+    }
 
+    return (
 
-
-
-
+      <div className="App">
+        <h1>iam a React  developer</h1>
+        <button onClick={this.myFunctionn} style={mee} >click me</button>
+        {mai}
   </div> 
    )}
 }
