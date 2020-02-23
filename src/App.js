@@ -7,9 +7,9 @@ class App extends Component {
 
  state = {
    persons :[
-     {name:'shujath', age:44},
-     {name:'alssi', age:4},
-     {name:'irfan', age:444}
+     {id:'1',name:'shujath', age:44},
+     {id:'2', name:'alssi', age:4},
+     {id:'3', name:'irfan', age:444}
    ],
    showPerson:false
  }
@@ -20,6 +20,14 @@ const doesShow = this.state.showPerson;
 this.setState({
   showPerson: !doesShow
 })
+  }
+
+  deleteHandler =(personIndex) =>{
+    const drray = this.state.persons;
+    drray.splice(personIndex,1);
+    this.setState({
+      persons:drray
+    })
   }
 
 render(){
@@ -39,9 +47,15 @@ render(){
    if(this.state.showPerson){
      person = (
        <div>
-        <Person name={this.state.persons[0].name}  age={this.state.persons[0].age} />
-      <Person name={this.state.persons[1].name}  age={this.state.persons[1].age} />
-      <Person name={this.state.persons[2].name}  age={this.state.persons[2].age} />
+        {this.state.persons.map((person,index)=> {
+          return <Person 
+          click ={()=>this.deleteHandler(index)}
+
+          
+          name={person.name} age={person.age} key={person.id} />
+        })}
+      
+        
        </div>
      )
 
