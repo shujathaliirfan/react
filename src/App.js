@@ -5,80 +5,55 @@ import './App.css';
 
 class App extends Component {
 
-state ={
-  username:'shujath ali irfan'
-}
+ state = {
+   persons :[
+     {name:'shujath', age:44},
+     {name:'alssi', age:4},
+     {name:'irfan', age:444}
+   ],
+   showPerson:false
+ }
 
-  state ={
-    Persons:[
-      {name:"shujath", age:"22"},
-      {name:"alih", age:"28"},
-      {name:"irfan", age:"29"}
-    ],
+  myFunction =()=>{
 
-    showPerson:false
+const doesShow = this.state.showPerson;
+this.setState({
+  showPerson: !doesShow
+})
   }
 
+render(){
 
-  myFunctionn =() => {
+  // myName  =(
+  //   <div>
+  // {this.state.persons.map(person=>{
+  //   return <Person name={person.name}  age={person.age} />
+  // })}
 
-    const doesShow =this.state.showPerson;
-    this.setState({showPerson: !doesShow})
-
-  }
-
-myFunction = (newName) =>{
-  this.setState({
-    Persons:[
-      {name:"kamran", age:"266"},
-      {name:newName, age:"666"},
-      {name:"muzammil", age:"88"}
-    ]
-
-  })
-}
+  //   </div>
+  // )
+  // }
 
 
+  let person =null;
+   if(this.state.showPerson){
+     person = (
+       <div>
+        <Person name={this.state.persons[0].name}  age={this.state.persons[0].age} />
+      <Person name={this.state.persons[1].name}  age={this.state.persons[1].age} />
+      <Person name={this.state.persons[2].name}  age={this.state.persons[2].age} />
+       </div>
+     )
 
-changed =(event)=>{
-  this.setState({
-    Persons:[
-      {name:event.target.value, age:"266"},
-      {name:'max', age:"666"},
-      {name:"muzammil", age:"88"}
-    ]
-
-  })
-
-  }
-  render() {
-    const mee = {
-      fontSize: '16px',
-      padding: '9px',
-      backgroundColor: 'yellow',
-      color: 'black'
-    }
-
-    let mai =null;
-
-    if(this.state.showPerson){
-      mai =(
-      <div>
-        <Person changed={this.changed} click={this.myFunction.bind(this,"pathan")}  name={this.state.Persons[0].name} age={this.state.Persons[0].age} currentName={this.state.username} />
-    <Person   name={this.state.Persons[1].name} age={this.state.Persons[1].age} />
-    <Person name={this.state.Persons[2].name} age={this.state.Persons[2].age} />
-
-    </div>)
-    }
-
-    return (
-
-      <div className="App">
-        <h1>iam a React  developer</h1>
-        <button onClick={this.myFunctionn} style={mee} >click me</button>
-        {mai}
-  </div> 
-   )}
-}
+   }
+  return (
+    <div className="App">
+      <p>iam a developers</p>
+      <button onClick={this.myFunction}>click me</button>
+      {person}
+      
+    </div>
+  )
+}}
 
 export default App;
