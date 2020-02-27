@@ -1,7 +1,25 @@
 import React, {Component} from 'react';
 import Person from './Person/Person';
-
 import './App.css';
+
+import styled from 'styled-components'
+
+
+const StyledButton  =styled.button`
+
+background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  &:hover{
+    background-color: orange;
+    color:white;
+
+  }`;
 
 class App extends Component {
 
@@ -64,7 +82,11 @@ render(){
   // }
 
   let style ={
-    backgroundColor:'red'
+    backgroundColor:'red',
+    ':hover':{
+      backgroundColor:'lightgreen',
+      color:'black'
+    }
   }
 
 
@@ -85,7 +107,11 @@ render(){
         
        </div>
      )
-    style.backgroundColor='blue';
+    style.backgroundColor ='blue';
+    style[':hover']={
+      backgroundColor:'yellow',
+      colo:'brown'
+    }
    }
 
 
@@ -97,13 +123,16 @@ render(){
     classes.push('red')
   }
   return (
+    
     <div className="App">
       <p className={classes.join('')}>iam a developers</p>
-      <button style={style} onClick={this.myFunction}>click me</button>
-      {person}
+      {/* <button style={style} onClick={this.myFunction}>click me</button> */}
+      <StyledButton  onClick={this.myFunction}>click me</StyledButton> 
+           {person}
       
     </div>
+   
   )
 }}
 
-export default App;
+export default  App;
